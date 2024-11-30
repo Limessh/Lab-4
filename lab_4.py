@@ -31,6 +31,7 @@ max_points=sum(item.points for item in items)
 
 def combination (items, max_size, individual_points):
     final_combination = []
+    finally_points=[]
     for i in range(1, len(items) + 1):
         for combination in combinations(items, i):
             final_size = sum(item.size for item in combination)
@@ -38,13 +39,14 @@ def combination (items, max_size, individual_points):
             final_points = (max_points-combination_points) + individual_points
             if final_size<=max_size and final_points>0:
                 final_combination.append(combination)
-    return final_combination
+                finally_points.append(final_points)
+    return final_combination, finally_points
 
-combos = combination(items,bag_size, start_points)
+combos,finally_points = combination(items,bag_size, start_points)
 # combos1 = combination(items,bag_size, start_points) # для 7 ячеек
 
-def print_inventory (combos):
-    for combo in combos:
+def print_inventory (combos,finally_points):
+    for combo, points in zip(combos, finally_points):
         print("Комбинация:")
         combination = []
         for item in combo:
@@ -58,6 +60,8 @@ def print_inventory (combos):
         # print (combination) # для 7 ячеек
         for j in range (0,bag_size,grid_size):
             print (combination[j],combination[j+1],combination[j+2])
+        print('Итоговые очки выживания:', points)
+        
             
-print_inventory(combos)
+print_inventory(combos,finally_points)
 # print_inventory(combos1) # для 7 ячеек
