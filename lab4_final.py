@@ -39,7 +39,11 @@ def combination(items, max_size, individual_points):
         for combination in combinations(items, i):
             final_size = sum(item.size for item in combination)
             combination_points = sum(item.points for item in combination)
-            final_points = combination_points - (max_points - combination_points) + individual_points
+            final_points = (
+                combination_points
+                - (max_points - combination_points)
+                + individual_points
+            )
             if final_size <= max_size and final_points > 0:
                 final_combination.append(combination)
                 finally_points.append(final_points)
