@@ -66,7 +66,6 @@ def print_inventory(combos, finally_points):
         if len(combination) != bag_size:
             while len(combination) != bag_size:
                 combination.append([" "])
-        # print (combination) # для 7 ячеек
         for j in range(0, bag_size, grid_size):
             print(combination[j], combination[j + 1], combination[j + 2])
         print("Итоговые очки выживания:", points)
